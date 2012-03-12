@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user scalable=no;" />
+        <meta charset="utf-8">
+        <script type="text/javascript" src="phonegap-1.4.1.js"></script>
+        <script type="text/javascript">
+            function gogo() {      
+                updateStatus('redirect to main app');
+                setTimeout(function () {
+                  window.location.href='https://dev.pickflair.com';
+                }, 100)
+                
+                
+            }
+            
+            function onLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);   
+            }            
+            
+            function onDeviceReady() {
+                updateStatus('onDeviceReady');
+                
+                document.addEventListener("resume", onResume, false);
+                document.addEventListener("online", onOnline, false);
+                document.addEventListener("offline", onOffline, false);
+                
+                onResume();
+            }
+            
+            /**
+             *  forces on init with connection and in runtime when phone became online
+             */
+            function onOnline() {                                
+                updateStatus('onOnline');                
+                showLoading();
+                gogo();
+            }
+
+            /**
+             *  forces on app init with no connection  and in runtime when phone goes onffine
+             */
+            function onOffline() {                
+                updateStatus('onOffline');
+                showNoConnection();
+            }
+            
+            /**
+             *  when phone wokes up.
+             *  We need manually check connection if it was changed 
+             *  while app was on background
+             */             
+            function onResume() {        
+                updateStatus('onResume');                
+                showLoading();
+                document.getElementById('noInternetConnection').style.display = "none";
+                if (hasInternetConnection()) {
+                    updateStatus('got connection after resume');                
+                    gogo();
+                } else {
+                    updateStatus('No connection after resume');                
+                    showNoConnection();
+                }
+            }
+            
+            function hasInternetConnection() {
+                var networkState = navigator.network.connection.type;
+                if (!networkState) return false;// android cant handle                                
+                return !networkState || networkState != Connection.NONE && networkState != Connection.UNKNOWN;
+            }
+            
+            function showNoConnection() {
+                document.getElementById('noInternetConnection').style.display = "";
+                document.getElementById('loading').style.display = "none";
+            }
+            
+            function showLoading() {
+                document.getElementById('noInternetConnection').style.display = "none";
+                document.getElementById('loading').style.display = "";
+            }
+            
+            function updateStatus(msg) {
+                document.getElementById('status').innerHTML += msg + "<br/>";                
+            }
+            
+        </script>
+    </head>
+    <body onload="onLoad();">
+        <p id="status" style="font-size: 10px;">
+            loading log:<br/>
+        </p>
+        <p id="noInternetConnection" style="display: none; text-align: center; color: red; position: absolute; bottom: 20%; width: 100%;">
+            No internet connection =(
+        </p>
+        <img id="loading" src="resources/ajax-loader.gif" style="position: absolute; bottom: 20%; left: 50%; margin-left: -16px;"/>
+    </body>
+</html>
