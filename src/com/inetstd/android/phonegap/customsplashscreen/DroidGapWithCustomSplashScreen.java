@@ -2,20 +2,14 @@ package com.inetstd.android.phonegap.customsplashscreen;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 
-import com.inetstd.android.phonegap.customsplashscreen.test.LandingActivity;
 import com.phonegap.DroidGap;
 
 
@@ -54,6 +48,7 @@ public abstract class DroidGapWithCustomSplashScreen extends DroidGap {
 		customSpashScreen.setScaleType(ScaleType.CENTER_CROP);
 		pgContainerView.addView(customSpashScreen);
 
+		// shows splash screen and hide 
 		showCustomSplashScreen();		
 	}
 

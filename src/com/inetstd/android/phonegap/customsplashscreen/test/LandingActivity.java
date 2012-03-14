@@ -2,34 +2,13 @@ package com.inetstd.android.phonegap.customsplashscreen.test;
 
 import com.inetstd.android.phonegap.customsplashscreen.DroidGapWithCustomSplashScreen;
 import com.inetstd.android.phonegap.customsplashscreen.R;
-import com.phonegap.DroidGap;
-import com.phonegap.api.LOG;
 
-
-import android.net.ConnectivityManager;
-import android.net.http.*;
-
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Bundle;
 
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebSettings;
-import android.webkit.WebSettings.LayoutAlgorithm;
-import android.webkit.WebView;
-import android.net.NetworkInfo;
-import android.webkit.WebViewClient;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.os.Bundle;
 
 public class LandingActivity extends DroidGapWithCustomSplashScreen {
 	
-	public static String REMOTE_URL = "file://android_asset/www/index.html";
 	
 	/** Called when the activity is first created. */
 	@Override
