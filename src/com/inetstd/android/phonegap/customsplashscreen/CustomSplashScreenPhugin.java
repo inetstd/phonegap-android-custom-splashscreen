@@ -2,6 +2,8 @@ package com.inetstd.android.phonegap.customsplashscreen;
 
 import org.json.JSONArray;
 
+import android.util.Log;
+
 import com.phonegap.api.Plugin;
 import com.phonegap.api.PluginResult;
 import com.phonegap.api.PluginResult.Status;
@@ -19,7 +21,9 @@ public class CustomSplashScreenPhugin extends Plugin {
 			this.ctx.runOnUiThread(new Runnable() {				
 				@Override
 				public void run() {
+				  Log.i("CustomSplashScreenPhugin", "pre hide");
 					((DroidGapWithCustomSplashScreen) CustomSplashScreenPhugin.this.ctx).hideCustomSplashScreen();
+					Log.i("CustomSplashScreenPhugin", "post hide");
 				}
 			});
 			

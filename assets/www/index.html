@@ -5,71 +5,21 @@
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, scalable=no;" />
         <meta charset="utf-8">
-       	<script type="text/javascript" src="phonegap-1.4.1.js"></script>
-        <script type="text/javascript">
-            function gogo() {                      
-                setTimeout(function () {
-                	
-                }, 100)
-                
-                
-            }
-            
+        <script type="text/javascript" src="phonegap-1.4.1.js"></script>
+        <script type="text/javascript">                      
             function onLoad() {              
               document.addEventListener("deviceready", onDeviceReady, false);   
             }            
             
             function onDeviceReady() {
-            	PhoneGap.exec(null, null, 'CustomSplashScreen', 'hide', []);
-            	//Passing list of args to the plugin
-                document.addEventListener("resume", onResume, false);
-                document.addEventListener("online", onOnline, false);
-                document.addEventListener("offline", onOffline, false);
-                onResume();
+            	alert('pre hide');
+              PhoneGap.exec(null, null, 'CustomSplashScreen', 'hide', []);
+              alert('post hide');
             }
             
-            /**
-             *  forces on init with connection and in runtime when phone became online
-             */
-            function onOnline() {
-                gogo();
-            }
-
-            /**
-             *  forces on app init with no connection  and in runtime when phone goes onffine
-             */
-            function onOffline() {
-                gogo();
-            }
-            
-            /**
-             *  when phone wokes up.
-             *  We need manually check connection if it was changed 
-             *  while app was on background
-             */             
-            function onResume() {
-                gogo();               
-            }
-            
-            function hasInternetConnection() {
-                var networkState = navigator.network.connection.type;
-                if (!networkState) return false;// android cant handle                                
-                return !networkState || networkState != Connection.NONE && networkState != Connection.UNKNOWN;
-            }
-            
-            function showNoConnection() {
-                document.getElementById('noInternetConnection').style.display = "";
-                document.getElementById('loading').style.display = "none";
-            }
-            
-            function showLoading() {
-                document.getElementById('noInternetConnection').style.display = "none";
-                document.getElementById('loading').style.display = "";
-            }
-                        
-            
-        </script>
+            </script>
     </head>
     <body onload="onLoad();">
+    <h1>It works!</h1>
     </body>
 </html>
